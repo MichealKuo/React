@@ -1,12 +1,14 @@
 import React from 'react'
 
 function MyButton(props) {
-  const { text, value, setTotal, total } = props
+  const { text, value, changeTotal } = props
+
   return (
     <>
       <button
+        className="btn btn-secondary"
         onClick={() => {
-          setTotal(total + value)
+          changeTotal(value)
         }}
       >
         {text}

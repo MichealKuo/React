@@ -1,13 +1,20 @@
-import React from 'react'
-import Child from './Child'
+import React, { useState } from 'react'
+import ChildA from './ChildA'
+import ChildB from './ChildB'
+import ChildC from './ChildC'
 
 function Parent() {
+  const [parentData, setParentData] = useState('Parent Data')
+
+  // 為了要給 ChildB 設定資料到 Parent
+  const [data, setData] = useState('')
+
   return (
     <>
-      {/* 在父母元件的render 中使用子女元件 */}
-      <Child text="Hello" name="Eddy" />
-      <Child text={true} name="1" />
-      <Child />
+      <ChildA parentData={parentData} />
+      <ChildB setData={setData} />
+      <p>由ChildB來的資料：{data}</p>
+      <ChildC data={data} />
     </>
   )
 }
