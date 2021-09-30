@@ -15,6 +15,7 @@ class CounterCC extends React.Component {
         <h1
           onClick={() => {
             this.setState({
+              //設定狀態setState 然後給一個物件值 total: this.state.total + 1,
               total: this.state.total + 1,
             })
           }}

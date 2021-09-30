@@ -20,6 +20,7 @@ function FormFC() {
           setLoginData({
             ...loginData,
             //因為FC狀態不一定是物件 所以要先展開 才不會輸入username password  被覆蓋
+            //...先展開原本的物件 然後在把新增的加進去整合出新的
 
             username: event.target.value,
           })

@@ -8,6 +8,7 @@ function CounterFC() {
     <>
       <h1
         onClick={() => {
+          //先宣告一個變數 即可同步
           const newTotal = total + 1 //同步
           setTotal(newTotal) // 異步，用途一：react改變網頁上的dom元素
           // 得到設定完成後的狀態

@@ -3,7 +3,7 @@ import './App.css'
 import OrderList from './components/OrderList'
 import Summary from './components/Summary'
 
-// 產品訂購的項目
+// 產品訂購的項目 因為 Product summary 都需要 放在父層App.js
 const products = [
   {
     id: 1,

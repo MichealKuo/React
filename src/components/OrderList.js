@@ -30,6 +30,7 @@ function OrderList(props) {
               price={v.price}
               count={v.count}
               setCount={(newCount) => {
+                //react 是陣列 或是 狀態時候 三步驟處理如下：
                 //1. 先從原本的陣列拷貝出一個新陣列(在這上面處理)
                 const newProductsInOrder = [...productsInOrder]
 
