@@ -1,133 +1,115 @@
+import { useState } from 'react'
 import './App.css'
+import OrderList from './components/OrderList'
+import Summary from './components/Summary'
+
+// 產品訂購的項目
+const products = [
+  {
+    id: 1,
+    name: '咖啡色 T-shirt',
+    category: 'Shirt',
+    image: 'https://i.imgur.com/1GrakTl.jpg',
+    price: 300,
+  },
+  {
+    id: 2,
+    name: '白色 T-shirt',
+    category: 'Shirt',
+    image: 'https://i.imgur.com/ba3tvGm.jpg',
+    price: 200,
+  },
+  {
+    id: 3,
+    name: '黑色 T-shirt',
+    category: 'Shirt',
+    image: 'https://i.imgur.com/pHQ3xT3.jpg',
+    price: 450,
+  },
+  {
+    id: 4,
+    name: '金色 T-shirt',
+    category: 'Shirt',
+    image: 'https://i.imgur.com/pHQ3xT3.jpg',
+    price: 100,
+  },
+]
+
+// 初始化狀態用的函式 - 用陣列狀態
+// const initState = (products) => {
+//   const state = []
+
+//   for (let i = 0; i < products.length; i++) {
+//     state.push(1)
+//   }
+
+//   return state
+// }
+
+// 初始化狀態用的函式 - 用陣列中的物件狀態
+const initStateWithObjcet = (products) => {
+  const state = []
+
+  for (let i = 0; i < products.length; i++) {
+    state.push({ ...products[i], count: 1 })
+  }
+
+  return state
+}
 
 function App() {
+  // 多樣產品狀態：陣列
+  // ex. 三樣商品 -> [1,1,1]
+  // 下面兩種方式均可
+  //const [counts, setCounts] = useState(initState(products))
+  //const [counts, setCounts] = useState(Array(products.length).fill(1))
+
+  // 多樣產品狀態：物件
+  // [{
+  //   id: 4,
+  //   name: '金色 T-shirt',
+  //   category: 'Shirt',
+  //   image: 'https://i.imgur.com/pHQ3xT3.jpg',
+  //   price: 100,
+  //   count:1
+  // }]
+  const [productsInOrder, setProductsInOrder] = useState(
+    initStateWithObjcet(products)
+  )
+
+  // Summary
+  // 計算目前所有的商品數量
+  const productCount = () => {
+    let totalCount = 0
+
+    for (let i = 0; i < productsInOrder.length; i++) {
+      totalCount += productsInOrder[i].count
+    }
+
+    return totalCount
+  }
+
+  // 計算目前所有的商品總價
+  const total = () => {
+    let sum = 0
+
+    for (let i = 0; i < productsInOrder.length; i++) {
+      sum += productsInOrder[i].count * productsInOrder[i].price
+    }
+
+    return sum
+  }
+
   return (
-    <>
-      <div className="card">
-        <div className="row">
-          <div className="col-md-8 cart">
-            <div className="title">
-              <div className="row">
-                <div className="col">
-                  <h4>
-                    <b>Shopping Cart</b>
-                  </h4>
-                </div>
-                <div className="col align-self-center text-right text-muted">
-                  3 items
-                </div>
-              </div>
-            </div>
-            <div className="row border-top border-bottom">
-              <div className="row main align-items-center">
-                <div className="col-2">
-                  <img
-                    alt=""
-                    className="img-fluid"
-                    src="https://i.imgur.com/1GrakTl.jpg"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row text-muted">Shirt</div>
-                  <div className="row">Cotton T-shirt</div>
-                </div>
-                <div className="col">
-                  <a href="#/">-</a>
-                  <a href="#/" className="border">
-                    1
-                  </a>
-                  <a href="#/">+</a>
-                </div>
-                <div className="col">
-                  &euro; 44.00 <span className="close">&#10005;</span>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="row main align-items-center">
-                <div className="col-2">
-                  <img
-                    alt=""
-                    className="img-fluid"
-                    src="https://i.imgur.com/ba3tvGm.jpg"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row text-muted">Shirt</div>
-                  <div className="row">Cotton T-shirt</div>
-                </div>
-                <div className="col">
-                  <a href="#/">-</a>
-                  <a href="#/" className="border">
-                    1
-                  </a>
-                  <a href="#/">+</a>
-                </div>
-                <div className="col">
-                  &euro; 44.00 <span className="close">&#10005;</span>
-                </div>
-              </div>
-            </div>
-            <div className="row border-top border-bottom">
-              <div className="row main align-items-center">
-                <div className="col-2">
-                  <img
-                    alt=""
-                    className="img-fluid"
-                    src="https://i.imgur.com/pHQ3xT3.jpg"
-                  />
-                </div>
-                <div className="col">
-                  <div className="row text-muted">Shirt</div>
-                  <div className="row">Cotton T-shirt</div>
-                </div>
-                <div className="col">
-                  <a href="#/">-</a>
-                  <a href="#/" className="border">
-                    1
-                  </a>
-                  <a href="#/">+</a>
-                </div>
-                <div className="col">
-                  &euro; 44.00 <span className="close">&#10005;</span>
-                </div>
-              </div>
-            </div>
-            <div className="back-to-shop">
-              <a href="#/">&leftarrow;</a>
-              <span className="text-muted">Back to shop</span>
-            </div>
-          </div>
-          <div className="col-md-4 summary">
-            <div>
-              <h5>
-                <b>Summary</b>
-              </h5>
-            </div>
-            <hr />
-            <div className="row">
-              <div className="col extra-1">ITEMS 3</div>
-              <div className="col text-right">&euro; 132.00</div>
-            </div>
-            <form>
-              <p>SHIPPING</p>
-              <select>
-                <option className="text-muted">
-                  Standard-Delivery- &euro;5.00
-                </option>
-              </select>
-              <p>GIVE CODE</p>
-              <input id="code" placeholder="Enter your code" />
-            </form>
-            <div className="row extra-2">
-              <div className="col">TOTAL PRICE</div>
-              <div className="col text-right">&euro; 137.00</div>
-            </div>
-            <button className="btn">CHECKOUT</button>
-          </div>
-        </div>
+    <div className="card">
+      <div className="row">
+        <OrderList
+          productsInOrder={productsInOrder}
+          setProductsInOrder={setProductsInOrder}
+        />
+        <Summary productCount={productCount()} total={total()} />
       </div>
-    </>
+    </div>
   )
 }
 
