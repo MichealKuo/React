@@ -32,6 +32,7 @@ function OrderList(props) {
               setCount={(newCount) => {
                 //react 是陣列 或是 狀態時候 三步驟處理如下：
                 //1. 先從原本的陣列拷貝出一個新陣列(在這上面處理)
+                //今天要改變狀態一定要透過setState 並新開陣列 講義virtual dom
                 const newProductsInOrder = [...productsInOrder]
 
                 //2. 運算處理：更新陣列中對應商品數量
