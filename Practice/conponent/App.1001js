@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import RadioButton from './components/RadioButton'
-import CheckBox from './components/CheckBox'
+import RadioButton from '../../src/components/RadioButton'
+import CheckBox from './CheckBox'
 
 function App(props) {
   const [inputText, setInputText] = useState('')
