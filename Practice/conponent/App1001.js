@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import RadioButton from '../../src/components/RadioButton'
-import CheckBox from './CheckBox'
+import RadioButton from './components/RadioButton'
+import CheckBox from './components/CheckBox'
 
 function App(props) {
   const [inputText, setInputText] = useState('')
@@ -18,6 +18,8 @@ function App(props) {
   // checkbox - group - 專用元件
   const [likeList2, setLikeList2] = useState([])
   const fruitOptions = ['芒果', '西瓜', '芭樂']
+  // date
+  const [birth, setBirth] = useState('')
 
   return (
     <>
@@ -119,7 +121,6 @@ function App(props) {
           type="checkbox"
           value="芒果"
           checked={likeList.includes('芒果')}
-          //includes 陣列api
           onChange={(e) => {
             // toggle(切換)
             // 如果這選項 在 陣列中 -> 移出陣列
@@ -129,7 +130,6 @@ function App(props) {
               const newLikeList = likeList.filter((v, i) => {
                 return v !== e.target.value
               })
-              //filter 會回傳一個 新陣列
 
               // for迴圈語法
               // const newLikeList = []
@@ -146,11 +146,8 @@ function App(props) {
               //1. 拷貝新陣列
               //2. 新陣列中作處理
               const newLikeList = [...likeList, e.target.value]
-              //先展開likeList 在丟進去
-
               //3. 設定回狀態
               setLikeList(newLikeList)
-              //setLikeList(...likeList, e.target.value) 一個步驟結束
             }
           }}
         />
@@ -195,11 +192,20 @@ function App(props) {
           )
         })}
       </section>
+      <section id="birth">
+        <h2>日期輸入框</h2>
+        <input
+          type="date"
+          value={birth}
+          onChange={(e) => {
+            setBirth(e.target.value)
+          }}
+        />
+      </section>
     </>
   )
 }
 
 export default App
-
 // 多個文字輸入欄位是用「物件」當狀態值是最常見/合理的作法
 // 不過核取方塊(複選盒)不一定用「物件」也有可能會用「陣列」
