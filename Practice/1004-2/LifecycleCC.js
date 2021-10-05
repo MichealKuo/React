@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 class LifecycleCC extends Component {
   constructor() {
     super()
-    //初始化狀態
     this.state = { total: 0 }
     console.log('constructor')
   }

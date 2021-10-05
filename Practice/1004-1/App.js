@@ -167,6 +167,7 @@ function App(props) {
           onChange={handleFieldChange}
           required
           minLength="5"
+          //密碼最少5位數
         />
         {fieldErrors.password !== '' && (
           <div className="error">{fieldErrors.password}</div>
