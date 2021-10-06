@@ -2,7 +2,6 @@ import React from 'react'
 import ProductItem from './ProductItem'
 
 function ProductList(props) {
-  console.log(props.products)
   const { products } = props
 
   return (
@@ -11,7 +10,7 @@ function ProductList(props) {
         <table className="table table-hover">
           <tbody>
             {products.map((product, i) => {
-              return <ProductItem product={product} />
+              return <ProductItem key={i} product={product} />
             })}
           </tbody>
         </table>
