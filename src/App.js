@@ -1,32 +1,48 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
 import Home from './pages/Home'
 import About from './pages/About'
 import Product from './pages/Product'
 import Android from './pages/sub-product/Android'
 import Apple from './pages/sub-product/Apple'
 import User from './pages/User'
+import Cart from './pages/Cart'
+
+import Menu from './components/Menu'
 
 function App() {
   // 指示會員是否登入，true = 登入
   const [auth, setAuth] = useState(false)
+  const [cartCount, setCartCount] = useState(0)
+
+  // didMount
+  useEffect(() => {
+    // 問伺服器是否有會員登入
+    // 如果有登入，設定auth為true
+    //setAuth(true)
+
+    //請localstorage中的購物車數量
+    const myCart = localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart'))
+      : []
+
+    // 設定為陣列的長度(成員數量)
+    setCartCount(myCart.length)
+  }, [])
 
   return (
     <Router>
       {/* Switch 有的話只會找出一個關鍵字 */}
       {/* exact 精準 最好都要加比較好 尤其是 home這分頁只有/路徑 如果再把它移到最上層會打什麼網址都只會 連 home */}
       {/* path="/product/apple 把這當成一個元件  */}
-      <>
-        <h2>Link元件</h2>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/product">Product</Link>
-        <Link to="/user">User</Link>
-        <h2>a標籤+href</h2>
+      {/* <h2>a標籤+href</h2>
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/product">Product</a>
-        <a href="/user">User</a>
+        <a href="/user">User</a> */}
+      <>
+        <Menu cartCount={cartCount} />
 
         <Switch>
           {/* 路徑愈長往愈上面放 */}
@@ -37,7 +53,10 @@ function App() {
             <Android />
           </Route>
           <Route path="/product">
-            <Product auth={auth} />
+            <Product cartCount={cartCount} setCartCount={setCartCount} />
+          </Route>
+          <Route path="/cart">
+            <Cart />
           </Route>
           <Route path="/about">
             <About />
