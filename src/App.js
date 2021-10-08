@@ -4,12 +4,18 @@ import React, { useState, useEffect } from 'react'
 import Home from './pages/Home'
 import About from './pages/About'
 import Product from './pages/Product'
+import ProductDetail from './pages/ProductDetail'
+
 import Android from './pages/sub-product/Android'
 import Apple from './pages/sub-product/Apple'
 import User from './pages/User'
 import Cart from './pages/Cart'
 
+import UserAdminIndex from './pages/admin/user/UserAdminIndex'
+
 import Menu from './components/Menu'
+// import Breadcrumbs from './components/Breadcrumbs'
+import MultiLevelBreadCrumb from './components/MultiLevelBreadCrumb'
 
 function App() {
   // 指示會員是否登入，true = 登入
@@ -43,7 +49,7 @@ function App() {
         <a href="/user">User</a> */}
       <>
         <Menu cartCount={cartCount} />
-
+        <MultiLevelBreadCrumb />
         <Switch>
           {/* 路徑愈長往愈上面放 */}
           <Route path="/product/apple">
@@ -51,6 +57,9 @@ function App() {
           </Route>
           <Route path="/product/android">
             <Android />
+          </Route>
+          <Route path="/product-detail/:id?">
+            <ProductDetail />
           </Route>
           <Route path="/product">
             <Product cartCount={cartCount} setCartCount={setCartCount} />
@@ -63,6 +72,9 @@ function App() {
           </Route>
           <Route path="/user">
             <User auth={auth} setAuth={setAuth} />
+          </Route>
+          <Route path="/admin/user/:task?">
+            <UserAdminIndex />
           </Route>
           <Route exact path="/">
             <Home auth={auth} />

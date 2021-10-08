@@ -1,20 +1,22 @@
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-
+import { Link, withRouter } from 'react-router-dom'
 import React from 'react'
 import { data } from '../data/'
 
 function Product(props) {
+  console.log(props)
+
   const { cartCount, setCartCount } = props
 
   return (
     <>
-      <h1>Product</h1>
+      <h1>產品總覽頁</h1>
       會員登入情況：{props.auth ? '已登入' : '還未登入'}
       <ul>
         {data.map((v, i) => {
           return (
             <li key={i}>
-              {v.name}
+              {/* 用Link連到每個商品的詳細頁 */}
+              <Link to={'/product/product-detail/' + v.id}>{v.name}</Link>
               <button
                 onClick={() => {
                   // 加到localStorage
@@ -39,4 +41,4 @@ function Product(props) {
   )
 }
 
-export default Product
+export default withRouter(Product)

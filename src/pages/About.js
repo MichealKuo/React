@@ -1,33 +1,23 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 
-function User(props) {
+function About(props) {
+  console.log(props)
+
   return (
     <>
-      <h1>會員中心</h1>
-      會員登入情況：{props.auth ? '已登入' : '還未登入'}
+      <h1>About</h1>
       <button
         onClick={() => {
-          props.setAuth(true)
-
-          alert('登入成功！')
-
-          //導向首頁
-          props.history.push('/')
+          props.history.push('/product')
         }}
       >
-        登入
-      </button>
-      <button
-        onClick={() => {
-          //導向首頁
-          props.history.goBack()
-        }}
-      >
-        回到上一頁
+        連到產品頁
       </button>
     </>
   )
 }
 
-export default withRouter(User)
+// HOC(高階元件樣式)
+// 擴充本元件的props
+export default withRouter(About)
