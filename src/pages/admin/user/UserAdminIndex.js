@@ -11,7 +11,7 @@ const Default = () => <>會員管理區域</>
 function UserAdminIndex(props) {
   console.log(props)
 
-  // 假設使用 http://localhost:5000/admin/user/order/?order_id=3
+  // 假設使用 http://localhost:3000/admin/user/order/?order_id=3
   const searchParams = new URLSearchParams(props.location.search)
   const order_id = searchParams.get('order_id')
   console.log(order_id)

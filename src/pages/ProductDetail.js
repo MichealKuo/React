@@ -16,7 +16,7 @@ function ProductDetail(props) {
 
   const [isLoading, setIsLoading] = useState(true)
 
-  // didMount+didUpdate
+  // didMount+didUpate
   useEffect(() => {
     const id = props.match.params.id
 

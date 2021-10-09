@@ -6,15 +6,14 @@ import About from './pages/About'
 import Product from './pages/Product'
 import ProductDetail from './pages/ProductDetail'
 
-import Android from './pages/sub-product/Android'
-import Apple from './pages/sub-product/Apple'
+// import Android from './pages/sub-product/Android'
+// import Apple from './pages/sub-product/Apple'
 import User from './pages/User'
 import Cart from './pages/Cart'
 
 import UserAdminIndex from './pages/admin/user/UserAdminIndex'
 
 import Menu from './components/Menu'
-// import Breadcrumbs from './components/Breadcrumbs'
 import MultiLevelBreadCrumb from './components/MultiLevelBreadCrumb'
 
 function App() {
@@ -39,26 +38,12 @@ function App() {
 
   return (
     <Router>
-      {/* Switch 有的話只會找出一個關鍵字 */}
-      {/* exact 精準 最好都要加比較好 尤其是 home這分頁只有/路徑 如果再把它移到最上層會打什麼網址都只會 連 home */}
-      {/* path="/product/apple 把這當成一個元件  */}
-      {/* <h2>a標籤+href</h2>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/product">Product</a>
-        <a href="/user">User</a> */}
       <>
         <Menu cartCount={cartCount} />
         <MultiLevelBreadCrumb />
         <Switch>
           {/* 路徑愈長往愈上面放 */}
-          <Route path="/product/apple">
-            <Apple />
-          </Route>
-          <Route path="/product/android">
-            <Android />
-          </Route>
-          <Route path="/product-detail/:id?">
+          <Route path="/product/product-detail/:id?">
             <ProductDetail />
           </Route>
           <Route path="/product">
@@ -73,7 +58,7 @@ function App() {
           <Route path="/user">
             <User auth={auth} setAuth={setAuth} />
           </Route>
-          <Route path="/admin/user/:task?">
+          <Route path="/admin/user/:task?/:id?">
             <UserAdminIndex />
           </Route>
           <Route exact path="/">

@@ -45,14 +45,14 @@ function MultiLevelBreadcrumb(props) {
 
       if (i === array.length - 1) {
         return (
-          <li className="breadcrumb-item active" aria-current="page">
+          <li key={i} className="breadcrumb-item active" aria-current="page">
             {v}
           </li>
         )
       }
 
       return (
-        <li className="breadcrumb-item">
+        <li key={i} className="breadcrumb-item">
           <Link to={pathArray.slice(0, i + 1).join('/')}>{v}</Link>
         </li>
       )
