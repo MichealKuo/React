@@ -10,4 +10,3 @@ function ChildA(props) {
 }
 
 export default ChildA
-

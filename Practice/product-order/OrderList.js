@@ -29,6 +29,7 @@ function OrderList(props) {
               image={v.image}
               price={v.price}
               count={v.count}
+              //設定一個函式 把最新的數量
               setCount={(newCount) => {
                 //react 是陣列 或是 狀態時候 三步驟處理如下：
                 //1. 先從原本的陣列拷貝出一個新陣列(在這上面處理)

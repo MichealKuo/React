@@ -52,6 +52,8 @@ const initStateWithObjcet = (products) => {
 
   for (let i = 0; i < products.length; i++) {
     state.push({ ...products[i], count: 1 })
+    //這做法把count 加上去product 物件裡
+    //id,name,....count
   }
 
   return state

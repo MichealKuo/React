@@ -10,6 +10,7 @@ import React from 'react'
 //  }
 
 function ProductItem(props) {
+  //設定傳入的參數
   const { name, category, image, price, count, setCount } = props
 
   return (
@@ -31,7 +32,7 @@ function ProductItem(props) {
               }}
             >
               -
-            </a>
+            </a>·
             <a href="#/" className="border">
               {count}
             </a>

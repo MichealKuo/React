@@ -11,12 +11,13 @@ function Parent() {
 
   return (
     <>
-    {/* ChildA 單向資料流 和 C */}
+      {/* ChildA 單向資料流 和 C */}
       <ChildA parentData={parentData} />
       {/* ChildB要使用callback 才可以拿資料 */}
       <ChildB setData={setData} />
       <p>由ChildB來的資料：{data}</p>
       <ChildC data={data} />
+      8096
       {/* A+B=C 誕生 */}
     </>
   )
